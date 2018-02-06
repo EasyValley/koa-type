@@ -10,26 +10,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-let User = class User {
+let Photo = class Photo {
 };
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn({ type: "int" }),
+    typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Photo.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column({ type: "varchar", length: 200 }),
+    typeorm_1.Column({
+        length: 100
+    }),
     __metadata("design:type", String)
-], User.prototype, "firstName", void 0);
+], Photo.prototype, "name", void 0);
 __decorate([
-    typeorm_1.Column({ type: "varchar", length: 200 }),
+    typeorm_1.Column("text"),
     __metadata("design:type", String)
-], User.prototype, "lastName", void 0);
+], Photo.prototype, "description", void 0);
 __decorate([
-    typeorm_1.Column({ type: "int" }),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Photo.prototype, "filename", void 0);
+__decorate([
+    typeorm_1.Column("double"),
     __metadata("design:type", Number)
-], User.prototype, "age", void 0);
-User = __decorate([
+], Photo.prototype, "views", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Boolean)
+], Photo.prototype, "isPublished", void 0);
+Photo = __decorate([
     typeorm_1.Entity()
-], User);
-exports.User = User;
-//# sourceMappingURL=User.js.map
+], Photo);
+exports.Photo = Photo;
+//# sourceMappingURL=Photo.js.map

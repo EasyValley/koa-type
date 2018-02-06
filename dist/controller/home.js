@@ -8,21 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Koa = require("koa");
-const router_1 = require("./router");
-const errorHandler_1 = require("./controller/errorHandler");
-const app = new Koa();
-app.use(errorHandler_1.errorHandler);
-app.use(router_1.default.routes());
-app.use(router_1.default.allowedMethods());
-app.use((ctx, next) => __awaiter(this, void 0, void 0, function* () {
-    ctx.body = 'next显示';
-}));
-app.listen(3000, () => {
-    console.log('我的koa在运行了.');
-});
-app.on('error', (err) => {
-    console.log(err);
-    console.log('出错了');
-});
-//# sourceMappingURL=index.js.map
+const User_1 = require("../entity/User");
+exports.default = (p) => {
+    return function home(ctx, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const connection = yield p;
+            const userRepository = yield connection.getRepository(User_1.User);
+            let users = yield userRepository.find();
+            ctx.body = users;
+        });
+    };
+};
+//# sourceMappingURL=home.js.map

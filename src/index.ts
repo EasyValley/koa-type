@@ -1,31 +1,20 @@
-import "reflect-metadata";
-import { createConnection } from "typeorm";
-import { User } from "./entity/User";
-// orm['entities'] = [User];
-createConnection({
-    "type": "mysql",
-    "host": "localhost",
-    "port": 3306,
-    "username": "root",
-    "password": "root",
-    "database": "koatype",
-    "synchronize": true,
-    "logging": false,
-    "entities": [User]
-}).then(async connection => {
+import * as Koa from 'koa';
+import router from './router';
+import { errorHandler } from './controller/errorHandler';
+const app = new Koa();
 
-    console.log("Inserting a new user into the database...");
-    const user = new User();
-    user.firstName = "萝卜";
-    user.lastName = "Saw";
-    user.age = 25;
-    await connection.manager.save(user);
-    console.log("Saved a new user with id: " + user.id);
+app.use(errorHandler);
+app.use(router.routes());
+app.use(router.allowedMethods());
+app.use(async (ctx, next) => {
+    ctx.body = 'next显示';
+});
 
-    console.log("Loading users from the database...");
-    const users = await connection.manager.find(User);
-    console.log("Loaded users: ", users);
+app.listen(3000, () => {
+    console.log('我的koa在运行了.');
+});
 
-    console.log("Here you can setup and run express/koa/any other framework.");
-
-}).catch(error => console.log(error));
+app.on('error', (err) => {
+    console.log(err);
+    console.log('出错了');
+});

@@ -8,21 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Koa = require("koa");
-const router_1 = require("./router");
-const errorHandler_1 = require("./controller/errorHandler");
-const app = new Koa();
-app.use(errorHandler_1.errorHandler);
-app.use(router_1.default.routes());
-app.use(router_1.default.allowedMethods());
-app.use((ctx, next) => __awaiter(this, void 0, void 0, function* () {
-    ctx.body = 'next显示';
-}));
-app.listen(3000, () => {
-    console.log('我的koa在运行了.');
-});
-app.on('error', (err) => {
-    console.log(err);
-    console.log('出错了');
-});
-//# sourceMappingURL=index.js.map
+require("reflect-metadata");
+const typeorm_1 = require("typeorm");
+const User_1 = require("../entity/User");
+/**
+ * 获取连接数据库的promise对象
+ */
+function getConnection() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return typeorm_1.createConnection({
+            "type": "mysql",
+            "host": "localhost",
+            "port": 3306,
+            "username": "root",
+            "password": "root",
+            "database": "koatype",
+            "synchronize": true,
+            "logging": false,
+            "entities": [User_1.User]
+        });
+    });
+}
+exports.default = getConnection;
+//# sourceMappingURL=dao.js.map

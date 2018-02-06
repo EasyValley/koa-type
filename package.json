@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
+    "@types/koa": "^2.0.44",
+    "@types/koa-router": "^7.0.27",
     "@types/node": "^8.0.29",
     "@types/reflect-metadata": "^0.1.0",
     "nodemon": "^1.14.12",
@@ -10,9 +12,10 @@
     "typescript": "2.5.2"
   },
   "dependencies": {
-    "typeorm": "0.1.12",
+    "koa-router": "^7.4.0",
+    "mysql": "^2.14.1",
     "reflect-metadata": "^0.1.10",
-    "mysql": "^2.14.1"
+    "typeorm": "0.1.12"
   },
   "scripts": {
     "start": "ts-node src/index.ts",

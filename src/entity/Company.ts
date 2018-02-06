@@ -1,18 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export class User {
+export class Company {
 
     @PrimaryGeneratedColumn({ type: "int" })
     id: number;
 
     @Column({ type: "varchar", length: 200 })
-    firstName: string;
+    name: string;
 
     @Column({ type: "varchar", length: 200 })
-    lastName: string;
-
-    @Column({ type: "int" })
-    age: number;
-
+    address: string;
 }
