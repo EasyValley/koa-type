@@ -12,7 +12,7 @@ const User_1 = require("../entity/User");
 exports.default = (p) => {
     return function home(ctx, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            const connection = yield p;
+            let connection = yield p;
             const userRepository = yield connection.getRepository(User_1.User);
             let users = yield userRepository.find();
             ctx.body = users;
