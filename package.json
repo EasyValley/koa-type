@@ -8,20 +8,23 @@
     "@types/koa-router": "^7.0.27",
     "@types/node": "^8.0.29",
     "@types/reflect-metadata": "^0.1.0",
+    "@types/winston": "^2.3.7",
     "nodemon": "^1.14.12",
     "ts-node": "3.3.0",
     "typescript": "2.5.2"
   },
   "dependencies": {
     "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^3.1.0",
     "koa-router": "^7.4.0",
     "mysql": "^2.14.1",
     "reflect-metadata": "^0.1.10",
-    "typeorm": "0.1.12"
+    "typeorm": "0.1.12",
+    "winston": "^2.4.0"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
+    
     "build": "tsc -w",
-    "server": "nodemon ./dist/index.js"
+    "server": "nodemon ./dist/src/index.js"
   }
 }

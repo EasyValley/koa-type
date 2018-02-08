@@ -9,7 +9,7 @@
         "baseUrl": ".",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "allowJs":true,
+        "allowJs": true,
         "paths": {
             "*": [
                 "node_modules/*",
