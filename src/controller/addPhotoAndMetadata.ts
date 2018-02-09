@@ -13,10 +13,15 @@ export default (connectionPromise: Promise<Connection>) => {
         let connection: Connection = await connectionPromise;
         let photoRepository = connection.getRepository(Photo);
         let metadataRepository = connection.getRepository(PhotoMetadata);
-        await photoRepository.save(data.metadata.photo);
-        await metadataRepository.save(data.metadata);
-        res.body = {
-            message: 'success'
-        };
+        try {
+            await photoRepository.save(data.metadata.photo);
+            await metadataRepository.save(data.metadata);
+            res.body = {
+                message: 'success'
+            };
+        } catch (error) {
+            ctx.throw(401, 'access_denied', { user: '3' });
+        }
+
     }
 }
