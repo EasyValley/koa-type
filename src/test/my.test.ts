@@ -1,10 +1,11 @@
 import app from '../index';
 process.env.NODE_ENV = 'test';
 const request = require('supertest');
+let server = app.listen();
 
 describe('请求/a', () => {
     it('需要得到ss内容', (done) => {
-        request(app.listen())
+        request(server)
             .get('/a')
             .expect(200)
             .end(done);
@@ -13,7 +14,7 @@ describe('请求/a', () => {
 
 describe('请求/home', () => {
     it('访问/home', (done) => {
-        request(app.listen())
+        request(server)
             .get('/home')
             .expect(200)
             .end(done);
@@ -22,7 +23,7 @@ describe('请求/home', () => {
 
 describe('请求/photo/add', () => {
     it('添加照片', (done) => {
-        request(app.listen())
+        request(server)
             .post('/photo/add')
             .send({
                 "metadata": {
